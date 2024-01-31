@@ -43,6 +43,7 @@ string numFlightFlyLand (int total, const string& city, FlightInfo* flights) {
         }
     }
 
+
     //cout << "num" << numFlights << endl;
 
     if (numFlights > 1) {
