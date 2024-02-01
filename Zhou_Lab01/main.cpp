@@ -84,22 +84,23 @@ string average (int total, const string& city, FlightInfo* flights) {
     return average;
 }
 
-void selectionSort(FlightInfo* flights, int total) {
+void selectionSort(FlightInfo flightarray[], int total) {
 
   /*  int i, j, minIn;
     string index, indexMin;*/
 
     int minIn = 0;
-    //FlightInfo temp = (const FlightInfo &) new FlightInfo;
+    FlightInfo temp;
 
     for (int i = 0; i < total - 1; i++) {
+        temp = flightarray[i];
         for (int j = i + 1; j < total; j++) {
-            if(flights[j].flight < flights[minIn].flight) {
+            if(flightarray[j].flight < flightarray[minIn].flight) {
                 minIn = j;
             }
             if (minIn != i) {
-                //temp = flights[i];
-                //cout << temp << endl;
+
+//                cout << temp << endl;
             }
         }
     }
@@ -211,7 +212,7 @@ int main() {
     string file = "flights_10.dat";
 
     FlightInfo* flights = readFile(file);
-
+    auto *flightarray = new FlightInfo[totalF];
     cout << cheapest(totalF, flights) << endl;
 
     cout << numFlightFlyLand(totalF, "Chicago", flights) << endl;
@@ -223,7 +224,13 @@ int main() {
     cout << average(totalF, "Paris", flights) << endl;
     cout << average(totalF, "Kingston", flights) << endl;
 
-    selectionSort(flights, totalF);
+    selectionSort(flightarray, totalF);
+    for (int i = 0; i < 10; i++) {
+        cout << flightarray[i].flight << " "
+             << flightarray[i].departure << " "
+             << flightarray[i].arrival << " "
+             << flightarray[i].price << endl;
+    }
 
 
     return 0;
